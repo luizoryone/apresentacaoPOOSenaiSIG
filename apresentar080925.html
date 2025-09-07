@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação POO</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+
+  <style>
+    :root{
+      --green-900: #09321a;
+      --green-800: #0f4d2e;
+      --green-600: #177a3f;
+      --green-400: #7ed18a;
+      --bg: #f6fbf7;
+      --card: #ffffff;
+      --muted: #5b6b5f;
+      --radius: 14px;
+      --shadow: 0 8px 30px rgba(15, 77, 46, 0.12);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body {
+      font-family: "Inter", system-ui, Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg), #eaf8ee);
+      overflow-x: auto;
+      overflow-y: hidden;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      scroll-snap-type: x mandatory;
+    }
+
+    section {
+      flex: 0 0 80%; /* cada quadro ocupa 80% da largura da tela */
+      height: 80%;   /* ocupa 80% da altura */
+      margin: 0 10%; /* cria espaço de ~20% (10% cada lado) */
+      background: var(--card);
+      border-radius: var(--radius);
+      border-bottom: solid #09321a;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      scroll-snap-align: center;
+    }
+
+    h1 {
+      font-size: 2.2rem;   /* aumentado */
+      color: var(--green-900);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1.3rem;   /* aumentado */
+      text-align: center;
+      line-height: 1.7;
+    }
+
+  h2 {
+    margin: 1px 0;       /* espaçamento superior e inferior */
+    line-height: 1.6;     /* altura da linha maior, facilita leitura */
+    font-size: 1.5rem;    /* mantém fonte em bom tamanho */
+  }
+
+  hr {
+    margin: 6px 0;       /* afasta as linhas horizontais do texto */
+    border: none;
+    border-top: 2px solid green;
+  }
+
+
+
+.definicao-bloco p {
+    margin: 0 0 10px 0; /* Ajusta margem dos parágrafos internos */
+}
+
+.termo-citado {
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #198754; /* Um tom de verde mais escuro */
+    margin-bottom: 15px !important; /* Garante espaço após o termo */
+}
+
+.definicao-bloco cite {
+    display: block; /* Faz a fonte ficar em uma linha separada */
+    text-align: right;
+    font-size: 0.5em;
+    color: #276639;
+    margin-top: 10px;
+}
+
+    .definicao-bloco {
+    border-left: 5px solid #28a745; /* Borda verde para um estilo distinto */
+    margin: 30px 0;
+    padding: 20px 15px 20px 20px;
+    background-color: #e9ecef; /* Fundo cinza claro */
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #495057;
+    quotes: "\201C" "\201D" "\2018" "\2019"; /* Adiciona aspas padrão para citação */
+}
+
+
+
+
+/* Diferenciação de slides */
+    .intro { background: #eafaf1; }
+    .content { background: #f3f4f6; }
+    .thoughts { background: #e5e7eb; }
+    .end { background: #9bceb5; color: white; }
+    .end a { color: #7ed18a; text-decoration: none; }
+    .end a:hover { text-decoration: underline; }
+    .icons {
+      margin-top: 30px;
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      font-size: 2rem;
+    }
+    .icons a {
+      color: #b87ed1;
+      transition: transform 0.3s;
+    }
+    .icons a:hover {
+      transform: scale(1.2);
+    }
+
+
+
+
+
+
+
+  </style>
+
+</head>
+<body>
+  <section>
+<h1 style="background-color: #87c695; width:360px; border-radius: 10px; padding: 10px 20px; text-align: center; margin: auto;">
+  Apresentação
+</h1>
+ <article class="card" id="card">
+    <div class="  header">
+  <div class="header" style="display:flex; align-items:center; gap:20px;">
+    <div class="avatar" style="width:80px;height:80px;border-radius:50%;background:var(--green-800);color:white;display:flex;align-items:center;justify-content:center;font-size:2rem;">LL</div>
+    <div>
+<h1 style="text-align: center; padding: 10px 0;">Luiz Oryone Moraes Lira</h1>
+      <p class="lead">Desenvolvedor Fullstack • Desenvolvimento Web • Análise de Sistemas</p>
+    </div>
+  </div>
+    </div>
+
+    <ul class="summary" id="summary">
+<h2>
+  <li><strong>Atual:</strong> Programador Backend PHP — SENAI-DF (pres.)</li>
+  <li><strong>Formação:</strong> SENAI-SP (2023–2025)</li>
+  <li><strong>Formação:</strong> Tecnólogo em Análise e Desenvolvimento de Sistemas (06/2026)</li>
+  <li><strong>Formação:</strong> Tecnólogo em Ciências do Futuro (06/2026)</li>
+  <li><strong>Formação:</strong> Bacharel em Sistemas de Informação (06/2028)</li>
+  <li><strong>Atuação:</strong> Fullstack — Desenvolvimento Web (HTML - CSS - Javascript - NodeJS - C# - Angular )</li>
+  <li><strong>Curso relevante:</strong> CS50 (Python) Prof.David Malan — Harvard (2017) direct learning in English</li>
+  <li><strong>POO:</strong> Delphi / Pascal (2000)</li>
+  <li><strong>Primeiro contato:</strong> BASIC no TK-95 (motivou inglês)</li>
+</h2>
+    <p class="muted">Resumo: Experiência histórica com linguagens clássicas, formação sólida e foco em evolução contínua como desenvolvedor Fullstack.</p>
+
+    <div class="actions">
+      <button class="btn" id="copyBtn">Copiar resumo</button>
+      <button class="btn ghost" id="downloadBtn">Baixar .txt</button>
+    </div>
+  </article>
+  </section>
+
+
+
+  <section>
+    <h1>Modelo Pedagógico e Plano de Ensino</h1>
+<section style="background:#f3f4f6; " >
+    <h2><hr color="green"> Objeto de Estudo: Abstração e os Pilares da POO</h2>
+    <hr>
+    <h2> <hr color="green">Introduzir os princípios da Programação Orientada a Objetos (POO).</h1>
+      <hr>
+    <h2> <hr color="green"> Compreender o conceito fundamental de Abstração/Paradigmas.</h2>
+    <hr>
+    <h2> <hr color="green"> Público-alvo: Iniciantes em programação.</h2>
+    <hr>
+    <h2> <hr color="green"> Aprendizagem Baseada em Problemas (ABP) e Construtivismo.</h2>
+    <hr>
+    <h2> <hr color="green">Termo/Palavra 'apresentada' - Termo/Palavra 'explicada'.</h2>
+    <hr>
+  </section>
+  </section>
+
+ <section style="background:#f3f4f6;">
+   <h1> Modelo Pedagógico e Plano de Ensino</h1>
+   <p>Aprendizagem Baseada em Problemas (ABP) e Construtivismo.</p>
+   <p> <img width="80%" src="Aabstracao.png" alt="abstração"> </p>
+  </section>
+  
+  <section style="background:#f3f4f6;">
+    <h1>Visão Pedagógica</h1>
+    <p>O ensino se apoia em exemplos práticos e analogias do cotidiano. O estudante constrói o conhecimento por meio da problematização e experimentação.</p>
+    <p> <img width="40%" src="Kindle_Head1.png" alt="lei de kindle"> </p>
+  </section>
+
+
+   <section style="background:#f3f4f6;">
+  <h1>
+    <hr>
+    Glossário - Terminologias
+    <p></p>
+    <hr>
+
+    <blockquote class="definicao-bloco">
+    <p class="termo-citado">Termo/Palavra Apresentada</p>
+    <p>Esta é a explicação detalhada do termo ou palavra que foi apresentada anteriormente, oferecendo contexto e clareza.</p>
+    <cite>- Luiz Oryone (apresentado/explicada)</cite>
+    <hr>
+     <p class="termo-citado">Programação Orientada á Objetos (POO)</p>
+    <p>A Programação Orientada a Objetos (POO) é um paradigma que permite organizar o código em classes e objetos, facilitando a reutilização, manutenção e evolução dos programas. O grande diferencial é que o código não precisa ser refeito do zero a cada nova demanda: ele pode ser separado em partes reutilizáveis, ampliado ou modificado conforme a necessidade.</p>
+    <p>👉 **Exemplo:** é como uma **planta baixa de uma casa térrea**. Podemos aproveitar a mesma base para construir outra casa e apenas acrescentar um **primeiro andar**, sem precisar desenhar toda a planta do zero. Da mesma forma, em POO, podemos herdar e ampliar funcionalidades já existentes.
+    </p>
+    <cite>- A Saber (Abstração, Paradigma)</cite>
+
+</blockquote>
+  </h1>
+  </section>
+
+
+
+
+
+
+
+
+
+  <section>
+    <h1>Pré-requisitos</h1>
+
+<section style="background:#e5e7eb;">
+  <h1>Pré-requisitos Essenciais</h1>
+  <h2>
+
+    <ul>
+      <li>1. Lógica de Programação e Algoritmos </li>
+      <li>2. Conhecimento Básico de Programação Estruturada </li>
+      <li>3. Noção de Funções e Métodos </li>
+      <li>4. Habilidade de Raciocínio Lógico e Pensamento Abstrato</li>
+        <li>5. 5. Inglês Técnico (Leitura)</li>
+      </ul>
+    </h2>
+  </section>
+</section>
+
+
+
+
+
+
+<section>
+<h1>
+  Inglês Técnico (Leitura)
+</h1>
+<h2>
+  <section style="background:#e5e7eb;">
+    Em Linguagem Simples: O inglês é a língua universal da programação. 
+    A maioria dos termos, documentações, tutoriais e mensagens de erro estão em inglês.
+    O objetivo não é a fluência, mas a capacidade de identificar e 
+    entender termos técnicos comuns, como variable, function, class, error, method. 
+    </section>
+</h2>
+</section>
+
+
+
+
+
+<section>
+<h1>
+  Apresentando o Inglês Técnico como Ferramenta Essencial <hr>
+
+
+</h1>
+<h2>
+  
+  <section style="background:#e5e7eb;">
+
+    Em Linguagem Simples: O inglês é a língua universal da programação. 
+    A maioria dos termos, documentações, tutoriais e mensagens de erro estão em inglês.
+    <hr> O objetivo não é a fluência, mas a capacidade de identificar e 
+    entender termos técnicos comuns, como variable, function, class, error, method. 
+    </section>
+</h2>
+</section>
+
+
+<section style="background:#f3f4f6;">
+  <h1>Case Study — Barbara</h1>
+  <h2>    Vamos pensar na área da saúde, que também exige precisão e conhecimento técnico. <hr>
+</h2>
+  <div style="display:flex; gap:40px; justify-content:center; align-items:flex-start; max-width:90%; margin:auto; text-align:left;">
+    
+    <!-- English -->
+    <div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+      <h2>🇺🇸 English</h2>
+      <p>
+        Barbara, from Connecticut, is a nurse graduated two years ago.  
+        She has a chance to move up at her hospital, but must complete a surgical instrumentation course.  
+        The instruments have unusual names and require intense training to avoid mistakes during surgery.
+      </p>
+    </div>
+
+    <!-- Portuguese -->
+    <div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+      <h2>🇧🇷 Português</h2>
+      <p>
+        Barbara, de Connecticut, é enfermeira formada há dois anos.  
+        Ela pode subir de cargo no hospital, mas precisa de um curso de instrumentação cirúrgica.  
+        Os instrumentos têm nomes incomuns e exigem treino intenso para evitar erros na cirurgia.
+      </p>
+    </div>
+
+  </div>
+</section>
+<section style="background:#e5e7eb; padding:60px 40px;">
+  <div style="display:flex; align-items:center; justify-content:center; gap:40px; max-width:1000px; margin:auto;">
+
+    <!-- Texto -->
+    <div style="flex:2; text-align:left;">
+      <h1>Barbara's Thoughts</h1>
+      <p style="font-size:1.3rem; line-height:1.6;">
+        "If I take this surgical instrumentation course, I can advance in my hospital.  
+        The names of the instruments are tricky, and I need to train hard to avoid mistakes.  
+        It will be challenging, but I am determined to succeed."
+      </p>
+    </div>
+
+     <div style="flex:1; text-align:right;">
+      <img src="enfermeia1.png" alt="enfermeira" style="max-width:100%; height:auto; border-radius:10px;">
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  <section>
+    <h1>Desmistificar a Programação Orientada a Objetos (POO).</h1>
+    <h2>O uso da abstração como fio condutor, através da analogia de "atravessar um rio".</h2>
+
+<section style="background:#e5e7eb;">
+    <h1>
+      <p>
+       <h2> Abstração: Atravessando um Rio -
+      A abstração é a capacidade de focar nos aspectos essenciais de algo, 
+      ignorando os detalhes irrelevantes para o contexto atual. </h2>
+      <hr>
+</h1>
+    <h2>
+No mundo da programação, significando modelar entidades do mundo real (ou conceitos) de forma simplificada, 
+destacando apenas suas características e comportamentos importantes.
+
+Utilizarei a tarefa de "atravessar um rio" como nosso tema central de estudo.
+  </section>
+  </section>
+
+
+
+  <section>
+    <h1>Abstração: Atravessando um Rio</h1>
+    <h2>A tarefa de "atravessar um rio" como nosso tema central de estudo</h2>
+
+<section style="background:#e5e7eb;">
+<p><img src="atravessarRio3png.png" alt="atravessar rio" width="40%"></p>   
+</section>
+  </section>
+
+
+  
+  <section>
+<h1>
+Analógia Aplicada - Introduzindo o Conceito de Paradigmas
+</h1>
+
+<section style="background:#e5e7eb;">
+    <h1>
+      Métodos (Abstrações) para Atravessar o Rio:
+
+</h1>
+    <h2>
+
+      <ul>
+        <li>1. Nadando: Analogia: Linguagem de Assembly. </li>
+        <li>2. Canoa de Madeira Rústica: Analogia: Programação procedural como BASIC. </li>
+        <li>3. Balsa Estruturada: Analogia: Programação estruturada.</li>
+        <li>4. Barco a Motor: Analogia: Programação Orientada a Objetos (POO).</li>
+          <h2> Este é o auge da abstração nesta analogia. 
+            <hr> O barco a motor representa os objetos. </h2>
+          <li>5.Ponte: Resultado Final/Abstração Máxima.</li>
+          <h2> <hr>A ponte representa a abstração final e mais eficiente para atravessar o rio.</h2>
+          <p></p>
+      </ul>
+    </h2>
+  </section>
+  </section>
+
+
+
+
+  
+  
+  <section>
+    <h1>
+</h1>
+
+  <h1> 
+  1. Nadando: Linguagem de Assembly (destaque na complexidade e controle de baixo nível):
+  </h1>
+<section style="background:#e5e7eb;">
+    <img src="nadando1.png" alt="nadando assembler" width="40%">
+    <h2>Linguagem de Assembly: Controle granular do hardware, complexidade máxima.
+
+</h2>
+  </section>
+  </section>
+
+
+
+  
+  
+  <section>
+    <h1>
+      2. Remando: Programação Procedural (BASIC) (destaque na simplicidade e sequência de instruções):
+    </h1>
+
+<section style="background:#e5e7eb;">
+
+    <img src="remando1.png" alt="remando basic" width="40%">
+    <h2>Procedural (BASIC): Instruções sequenciais, passo a passo, como uma receita.</h2>
+  </section>
+  </section>
+
+
+
+  
+  
+  <section>
+    <h1>
+      3. Balsa: Programação Estruturada (organização blocos/controle de fluxo):
+       (sequência, seleção e iteração), sub-rotinas (funções ou procedimentos) e a decomposição de problemas em partes menores e mais geríveis.
+    </h1>
+
+<section style="background:#e5e7eb;">
+
+    <img src="balsa1.png" alt="balsa" width="40%">
+    <h2>
+      Estruturada: Blocos de código organizados, focando no fluxo lógico.
+    </h2>
+  </section>
+  </section>
+
+
+
+  
+  
+  <section>
+    <h1>
+     4. Programação Orientada a Objetos (POO) (destaque na modularidade, objetos e suas interações):
+  </h1>
+
+<section style="background:#e5e7eb;">
+
+    <img src="barcoOPP1.png" alt="barco opp" width="40%">
+    <h2>
+      Orientada a Objetos (POO): Mundo como objetos interativos e reutilizáveis.
+    </h2>
+  </section>
+  </section>
+
+  
+
+
+
+  
+  <section>
+    <h1>
+      ## Conceitos da POO (Aplicados à Analogia)
+    </h1>
+
+<section style="background:#e5e7eb;">
+    <h1> 
+* **Classe:** O "projeto" ou "molde" para criar barcos a motor. Define quais propriedades e métodos todos os barcos a motor terão. <hr> Ex: `Classe BarcoAMotor`.
+<p><hr></p>
+* **Objeto:** Uma "instância" concreta de uma classe. É o barco real que você usa. <hr> Ex(js): `meuBarco = new BarcoAMotor()`.
+    </h1>
+  </section>
+  </section>
+
+
+
+
+  <section>
+<section style="background:#e5e7eb;">
+    <h1> 
+Conceitos Fundamentais da POO, frequentemente referidos como os "quatro pilares":
+    </h1>
+    <h2>
+      <hr>
+1. * **Encapsulamento:** Agrupar dados (propriedades) e métodos que operam sobre esses dados em uma única unidade (o objeto) e proteger o acesso direto aos dados internos, expondo apenas uma interface pública controlada. No barco, você interage com o volante e pedais, não com os pistões do motor.
+<hr>
+2. * **Abstração:** Representar apenas os aspectos essenciais de um objeto, escondendo detalhes complexos. No barco a motor, focamos em "ligar", "acelerar", "frear", e não na combustão interna.
+    </h2>
+    <hr>
+    <img src="" alt="">
+  </section>
+  </section>
+
+
+
+<section>
+  <section style="background:#e5e7eb;">
+
+  <h1>
+      1.  **Encapsulamento:** <hr>
+      2.  **Abstração:** 
+
+    </h1>
+
+    
+    <img src="abstracao1encapsula1.png" alt="abstração-encapsula" width="60%">
+  </section>
+  </section>
+
+
+
+
+  <section>
+    <section style="background:#e5e7eb;">
+
+    <h1>
+      3. **Herança:** 
+      <hr>
+      4. **Polimorfismo:** 
+      
+    </h1>
+
+
+    <img src="heranca1Poliformismo1.png" alt="herança poliformismo" width="60%">
+  </section>
+  </section>
+
+
+
+
+
+
+  
+  
+  <section>
+    <h1>
+      5. Ponte (Resultado Final/Abstração Máxima):
+    </h1>
+
+<section style="background:#e5e7eb;">
+  
+    <img src="ponte1.png" alt="ponte" width="40%">
+    <h2>
+      Ponte (Abstração Máxima): Solução completa, eficiente e transparente para o usuário.
+    </h2>
+  </section>
+  </section>
+
+
+
+
+  <section style="background:#f3f4f6; padding:40px;">
+<h1>Códigos Lado a Lado: Python e JavaScript</h1>
+<div style="display:flex; gap:40px; justify-content:center; align-items:flex-start; flex-wrap:wrap;">
+
+<!-- Python -->
+<div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:300px;">
+<h2>🐍 Python</h2>
+<pre style="font-size:0.9rem; line-height:1.4;">
+# Definindo uma classe representando a escola técnica
+class EscolaTecnicaSenai:
+    def __init__(self, nome):
+        # Atributo que armazena o nome da escola
+        self.nome = nome
+
+    # Método que recebe horário, curso e disciplina
+    def instrutor(self, horario, curso, disciplina):
+        """
+        Parâmetros:
+        horario: string - horário da aula
+        curso: string - nome do curso
+        disciplina: string - disciplina ministrada
+        """
+        # Retorna uma mensagem formatada com os dados fornecidos
+        return f"Instrutor da disciplina {disciplina} do curso {curso} está disponível no horário {horario} na {self.nome}"
+
+# Exemplo de uso
+escola = EscolaTecnicaSenai("SENAI-DF")
+print(escola.instrutor("08:00 - 10:00", "Programação Backend PHP", "Backend PHP"))
+</pre>
+</div>
+
+<!-- JavaScript -->
+<div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:300px;">
+<h2>🟨 JavaScript</h2>
+<pre style="font-size:0.9rem; line-height:1.4;">
+// Definindo uma classe representando a escola técnica
+class EscolaTecnicaSenai {
+    constructor(nome) {
+        // Atributo que armazena o nome da escola
+        this.nome = nome;
+    }
+
+    // Método que recebe horário, curso e disciplina
+
+    instrutor(horario, curso, disciplina) {
+        /*
+        Parâmetros:
+        horario: string - horário da aula
+        curso: string - nome do curso
+        disciplina: string - disciplina ministrada
+        */
+        return `Instrutor da disciplina ${disciplina} 
+        do curso ${curso} está disponível no horário ${horario} na ${this.nome}`;
+    }
+}
+
+// Exemplo de uso
+const escola = new EscolaTecnicaSenai("SENAI-DF");
+console.log(escola.instrutor("08:00 - 10:00", 
+"Programação Backend PHP", "Backend PHP"));
+</pre>
+</div>
+
+</div>
+</section>
+
+
+<section style="background:#e5e7eb; padding:60px 40px;">
+  <h1>Python vs JavaScript</h1>
+  <h2>Diferenças e Semelhanças na Programação Orientada a Objetos</h2>
+
+  <div style="display:flex; gap:40px; justify-content:center; flex-wrap:wrap;">
+
+    <!-- Diferenças -->
+    <div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:300px;">
+      <h2>⚡ Diferenças</h2>
+      <ul style="font-size:0.95rem; line-height:1.5;">
+        <li><strong>Declaração de Classe:</strong> Python usa <code>class NomeClasse:</code>, JS usa <code>class NomeClasse { }</code></li>
+        <li><strong>Método Construtor:</strong> Python usa <code>__init__</code>, JS usa <code>constructor()</code></li>
+        <li><strong>Self / this:</strong> Python usa <code>self</code> para referenciar a instância, JS usa <code>this</code></li>
+        <li><strong>Tipagem:</strong> Python é dinamicamente tipado, JS também, mas permite coerção implícita mais agressiva</li>
+        <li><strong>Impressão:</strong> Python usa <code>print()</code>, JS usa <code>console.log()</code></li>
+        <li><strong>String Interpolation:</strong> Python: f-strings <code>f"texto {var}"</code>, JS: Template literals <code>`texto ${var}`</code></li>
+      </ul>
+    </div>
+
+    <!-- Semelhanças -->
+    <div style="flex:1; background:white; padding:20px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); min-width:300px;">
+      <h2>✅ Semelhanças</h2>
+      <ul style="font-size:0.95rem; line-height:1.5;">
+        <li>Ambas suportam <strong>Programação Orientada a Objetos (POO)</strong> com classes e instâncias</li>
+        <li>Métodos podem receber <strong>parâmetros</strong> e retornar valores</li>
+        <li>Possuem <strong>atributos de instância</strong> e podem armazenar dados</li>
+        <li>Permitem criar <strong>múltiplos objetos</strong> a partir da mesma classe</li>
+        <li>Suportam <strong>herança</strong> e <strong>polimorfismo</strong> (embora a sintaxe seja diferente)</li>
+        <li>Ambas podem ser usadas para <strong>desenvolvimento web e backend</strong></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <p style="text-align:center; margin-top:30px; font-size:1rem; color:#198754;">
+    Comentário: A escolha entre Python e JS depende do contexto, mas os conceitos de POO se mantêm consistentes.
+  </p>
+</section>
+
+
+
+
+
+
+
+
+
+  <section class="end">
+    <h1>Encerramento</h1>
+    <p style="font-size:1.5rem; max-width:850px; line-height:1.8; margin-bottom:40px;">
+      A Programação Orientada a Objetos é mais do que um paradigma:  
+      é uma forma de pensar, estruturar e resolver problemas com clareza e reutilização.  
+    </p>
+
+    <p style="font-size:1.3rem; margin-bottom:30px;">
+      Obrigado pela oportunidade desta apresentação!  
+    </p>
+
+    <div style="display:flex; flex-direction:column; gap:20px; font-size:1.2rem; text-align:left;">
+      <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/luiz-oryone-007a99266/">(inserir link)</a></p>
+      <p><i class="fa-solid fa-graduation-cap"></i> Google Classroom: <a href="#">(inserir link)</a></p>
+      <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/luizoryone">(inserir link)</a></p>
+    </div>
+
+    <p style="font-size:1.1rem; margin-top:40px; max-width:800px; line-height:1.6;">
+      O projeto desta apresentação, junto com o plano de aula completo,  
+      será disponibilizado em meu GitHub para consulta e colaboração.
+    </p>
+
+    <!-- Ícones extras -->
+    <div class="icons">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fa-solid fa-graduation-cap"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+  </section>
+
+
+
+  <section style="background:#e5e7eb;">
+    <h1>FIM DA APRESENTAÇÃO</h1>
+  </section>
+
+  <section style="background:#f3f4f6;">
+  
+  </section>
+
+  
+
+
+
+</body>
+<script>
+    const summaryText = [
+      "Nome: Luiz Oryone Moraes Lira",
+      "Área: Tecnologia da Informação — Desenvolvimento Web & Análise de Sistemas",
+      "Perfil: Desenvolvedor Fullstack",
+      "Formação: SENAI-SP (2023–2025)",
+      "Primeiro contato: BASIC no TK-95 (motivou estudo de inglês)",
+      "Entrada em POO: Delphi / Pascal (início anos 2000)",
+      "Curso CS50 (Python) — Harvard University (David Malan) — 2017",
+      "Atual: Curso Programador Backend PHP — SENAI-DF (presencial)",
+      "Resumo: Combina experiência prática, formação sólida e foco em evolução contínua."
+    ].join("\\n");
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(summaryText);
+        document.getElementById('copyBtn').textContent = 'Copiado!';
+        setTimeout(()=> document.getElementById('copyBtn').textContent = 'Copiar resumo', 1500);
+      }catch(e){
+        alert('Não foi possível copiar automaticamente. Selecionar manualmente o texto.');
+      }
+    });
+
+    document.getElementById('downloadBtn').addEventListener('click', () => {
+      const blob = new Blob([summaryText], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'resumo_luiz_lira.txt';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</html>
