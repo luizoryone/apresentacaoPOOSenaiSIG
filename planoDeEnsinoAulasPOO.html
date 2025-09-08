@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Aulas Ampliadas — POO pela Abstração (Atravessar o Rio)</title>
+<style>
+:root{
+  --azul:#1565c0; --azul-claro:#42a5f5; --laranja:#ef6c00; --bg:#f7f9fc; --paper:#fff;
+  --ink:#1a1f36; --muted:#5f6b86; --radius:12px; --shadow:0 10px 24px rgba(10,24,55,.08);
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif; background:var(--bg); color:var(--ink); line-height:1.6}
+.container{max-width:1200px; margin:28px auto; padding:20px;}
+.header{background:linear-gradient(135deg, rgba(21,101,192,.06), rgba(239,108,0,.04)); padding:22px; border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:18px}
+.header h1{margin:0 0 6px; color:var(--azul)}
+.header p{margin:0; color:var(--muted)}
+
+.card{position:relative; background:var(--paper); border-radius:var(--radius); padding:18px; margin:18px 0; box-shadow:var(--shadow); overflow:hidden}
+.card::before{content:""; position:absolute; inset:0; border-radius:var(--radius); padding:2px;
+  background:linear-gradient(135deg,var(--azul),var(--azul-claro),var(--laranja));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; mask-composite:exclude; pointer-events:none;
+}
+.card .inner{position:relative; background:transparent; padding:0; border-radius:calc(var(--radius) - 6px)}
+
+h2{color:var(--azul); margin:0 0 10px}
+h3{color:var(--laranja); margin:0 0 8px}
+
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+@media(max-width:880px){ .row{grid-template-columns:1fr} }
+
+.code-box{background:#0b1220; color:#e6f0ff; padding:12px; border-radius:10px; font-family: "Courier New", monospace; font-size:0.95rem; overflow:auto; min-height:120px}
+.code-caption{font-size:0.9rem; color:var(--muted); margin-bottom:8px}
+
+.list-compact ul{margin:6px 0 6px 18px}
+.kv{display:flex; gap:10px; flex-wrap:wrap}
+
+.qblock{background:linear-gradient(90deg, rgba(21,101,192,.04), rgba(239,108,0,.02)); padding:12px; border-radius:10px; margin-top:10px; border:1px dashed rgba(13,71,161,.12)}
+.qblock p{margin:6px 0}
+
+.glossary dt{font-weight:700; margin-top:10px}
+.glossary dd{margin:4px 0 10px 16px; color:var(--muted)}
+
+.example-run{display:flex; gap:12px; align-items:flex-start; margin-top:12px}
+.example-run button{background:var(--azul); color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer}
+.example-run pre{background:#eef6ff; padding:10px; border-radius:8px; color:var(--azul); font-family:monospace; margin:0; overflow:auto}
+
+.small{font-size:.95rem; color:var(--muted)}
+.footer{text-align:center; color:var(--muted); margin:18px 0 40px}
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header card">
+      <div class="inner">
+        <h1 style="text-align: center;">Luiz Oryone: Plano de Ensino POO</h1>
+        <h1 style="text-align: center;">Aulas Ampliadas — POO pela Abstração</h1>
+        <p>Ampliação didática das 4 aulas com códigos comparativos lado a lado, perguntas (com respostas) e modelo aplicado comentado.</p>
+      </div>
+    </header>
+
+    <!-- Aula 1 -->
+    <section id="aula1" class="card">
+      <div class="inner">
+        <h2>Aula 1 — O Problema e as Primeiras Abstrações (Nadando e Canoa/BASIC)</h2>
+        <p class="small">Estrutura: Introdução (15'), Exploração (45'), Atividade (30'), Encerramento (15')</p>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <div class="code-caption">Estilo "Assembly" — pseudocódigo sequencial (muito detalhado)</div>
+            <div class="code-box">
+// Assembly-style pseudocode (very low-level logic)
+// Comentários: explicita cada passo; detalha controle e verificação.
+LOAD R1, <posicio_margem_origem>   ; posição de partida
+LOAD R2, <força_corrrente>
+CMP R2, MAX_FORCA
+JGT HANDLE_STRONG_CURRENT
+CALL CHECK_BREATHE
+LOOP:
+  DECREMENT STAMINA
+  IF STAMINA&lt;5 GOTO REST
+  ADJUST_ARM_MOVEMENT
+  MOVE_ONE_METER_FORWARD
+  CMP POSITION, TARGET
+  JNE LOOP
+END
+            </div>
+          </div>
+
+          <div>
+            <div class="code-caption">Estilo "BASIC" / Procedural simples — pseudocódigo</div>
+            <div class="code-box">
+REM Pseudocódigo estilo BASIC - sequência de passos
+inicio:
+  definir stamina = 100
+  definir pos = margem_origem
+  enquanto pos &lt; margem_destino
+    se correnteza &gt; limite então
+      exibir "perigo" : chamar ajuda
+      sair
+    fimse
+    nadar_um_passo()
+    stamina = stamina - 1
+    pos = pos + 1
+  fimenquanto
+  exibir "chegou"
+fim
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="list-compact">
+          <p><strong>Comentário pedagógico:</strong> a versão "assembly" expõe cada operação (controle fino), tornando claro o custo cognitivo. A versão "BASIC" já organiza em blocos (loops, condições), mas ainda é linear e orientada a passos.</p>
+        </div>
+
+        <hr style="margin:14px 0" />
+
+        <h3>Atividade — Pseudocódigo (30 min)</h3>
+        <p>Peça aos alunos para escreverem, em 15 minutos, pseudocódigo para o mesmo problema nas duas abordagens (assembly-like e procedural) e depois discutam as diferenças em termos de abstração e legibilidade.</p>
+
+        <!-- Perguntas -->
+        <div class="qblock">
+          <h4>Perguntas (2) — Aula 1</h4>
+
+          <p><strong>P1:</strong> Por que o estilo "assembly" dificulta a manutenção do código mesmo que ofereça máximo controle?</p>
+          <p><strong>Resposta:</strong> Porque cada detalhe operacional precisa ser gerido manualmente — variáveis de baixo nível, ciclos explícitos e verificações — o que aumenta o risco de erro e o custo de alteração.</p>
+          <p><em>Resenha:</em> Explique que manutenção envolve entender intenções e abstrações; quando o código é muito detalhado, entender "por que" algo foi feito fica difícil, e pequenas mudanças exigem mexer em muitos pontos. Use exemplo: alterar a forma de medir "um passo" exigiria mudanças em várias rotinas de baixo nível.</p>
+
+          <hr/>
+
+          <p><strong>P2:</strong> Cite duas vantagens didáticas de começar a ensinar com a analogia do nadar antes de apresentar POO.</p>
+          <p><strong>Resposta:</strong> 1) Oferece percepção do custo e complexidade de baixo nível; 2) possibilita contraste claro com níveis maiores de abstração, reforçando por que abstrações existem.</p>
+          <p><em>Resenha:</em> Ao ver o esforço manual, o aluno entende a necessidade de modularização e abstração, o que torna as ideias de função e classe mais motivadas. Professores podem pedir reflexões curtas para fixar esse raciocínio.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Aula 2 -->
+    <section id="aula2" class="card">
+      <div class="inner">
+        <h2>Aula 2 — Estrutura e Organização (Balsa / Programação Estruturada)</h2>
+        <p class="small">Revisão (10'), Apresentação (30'), Atividade (40'), Introdução à Abstração (10'), Encerramento (10')</p>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <div class="code-caption">Pseudocódigo estruturado — funções/procedimentos</div>
+            <div class="code-box">
+# Procedural pseudocode (structured)
+function verificar_vento():
+  if vento &gt; limite:
+    return "alto"
+  return "ok"
+
+function remar():
+  for i in range(0, passo_por_segundo):
+    executar_remada()
+  return progresso
+
+function atravessar():
+  status = verificar_vento()
+  if status == "alto":
+    chamar_ajuda()
+    return "aguardando"
+  enquanto nao chegou:
+    progresso = remar()
+    if emergencia():
+      ancorar(); break
+  return "chegou"
+            </div>
+          </div>
+
+          <div>
+            <div class="code-caption">Fluxo organizado (diagrama textual)</div>
+            <div class="code-box">
+// Pseudodiagrama
+[Início] --> [verificar_vento()]
+    | (ok) --> [remar()] --> [checa_progresso]
+    | (alto) --> [chamar_ajuda] --> [fim]
+[checa_progresso] --> (chegou?) -> [fim] : (não) -> [remar()]
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:12px"><strong>Comentário:</strong> Aqui introduzimos decomposição do problema em unidades reutilizáveis (funções). Os alunos começam a pensar em interface de função (o que entra/ sai) — um passo essencial rumo à abstração.</p>
+
+        <hr/>
+
+        <div class="qblock">
+          <h4>Perguntas (2) — Aula 2</h4>
+
+          <p><strong>P1:</strong> Quais são os benefícios de dividir uma tarefa grande em funções menores? Dê dois exemplos.</p>
+          <p><strong>Resposta:</strong> 1) Reuso de código — a mesma função pode ser chamada em vários cenários; 2) Testabilidade — funções pequenas são mais fáceis de testar isoladamente.</p>
+          <p><em>Resenha:</em> Explique como a separação reduz o acoplamento: por exemplo, `verificar_vento()` pode ser usado por várias rotas sem conhecer detalhes de `remar()`. Isso melhora manutenção e comunicação entre membros do time.</p>
+
+          <hr/>
+
+          <p><strong>P2:</strong> Quando a decomposição em funções pode não ser suficiente e precisamos de outro modelo (POO)?</p>
+          <p><strong>Resposta:</strong> Quando o domínio contém várias entidades com estado e comportamentos relacionados que precisam ser modelados juntos (ex.: vários tipos de embarcações com comportamento semelhante, estado próprio e interações complexas).</p>
+          <p><em>Resenha:</em> Se for apenas sequência de passos, funções bastam; se houver objetos com propriedades e vida própria (estado), POO facilita agrupar dados e métodos, evitando passagem excessiva de parâmetros e estruturas complexas para representar estado.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Aula 3 -->
+    <section id="aula3" class="card">
+      <div class="inner">
+        <h2>Aula 3 — O Poder dos Objetos (Barco a Motor / POO)</h2>
+        <p class="small">Revisão (15'), Apresentação (45'), Atividade prática, Herança & Polimorfismo (20'), Encerramento (10')</p>
+
+        <div class="row" style="margin-top:12px">
+          <div>
+            <div class="code-caption">Java — Classe BarcoAMotor (exemplo comentado)</div>
+            <div class="code-box">
+/* Java - BarcoAMotor.java */
+public class BarcoAMotor {
+  // propriedades (estado)
+  private String cor;
+  private int velocidadeMaxima;
+  private boolean motorLigado = false;
+
+  // construtor
+  public BarcoAMotor(String cor, int vmax){
+    this.cor = cor;
+    this.velocidadeMaxima = vmax;
+  }
+
+  // método público (interface)
+  public void ligarMotor(){
+    motorLigado = true;
+    System.out.println("Motor ligado");
+  }
+
+  public void acelerar(int incremento){
+    if(!motorLigado) { System.out.println("Ligue o motor antes"); return; }
+    // lógica de ajustar velocidade (simplificada)
+    System.out.println("Acelerando +" + incremento);
+  }
+
+  // encapsulamento: motorLigado não é acessível diretamente
+}
+            </div>
+          </div>
+
+          <div>
+            <div class="code-caption">Python — mesma ideia (mais conciso)</div>
+            <div class="code-box">
+# Python - barco.py
+class BarcoAMotor:
+    def __init__(self, cor, vmax):
+        self.cor = cor
+        self.velocidade_maxima = vmax
+        self._motor_ligado = False  # _underscore indica "privado" por convenção
+
+    def ligar_motor(self):
+        self._motor_ligado = True
+        print("Motor ligado")
+
+    def acelerar(self, incremento):
+        if not self._motor_ligado:
+            print("Ligue o motor antes")
+            return
+        print(f"Acelerando +{incremento}")
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:12px"><strong>Comentário:</strong> Observe encapsulamento (atributos privados/semântica), métodos que representam ações e construtores que definem estado inicial — o conceito central da POO.</p>
+
+        <hr/>
+
+        <div class="qblock">
+          <h4>Perguntas (2) — Aula 3</h4>
+
+          <p><strong>P1:</strong> Explique com suas palavras o que é encapsulamento e dê um exemplo prático usando o BarcoAMotor.</p>
+          <p><strong>Resposta:</strong> Encapsulamento é a prática de esconder os detalhes internos (estado/implementação) e expor uma interface pública (métodos). Ex.: `ligarMotor()` e `acelerar()` expõem ações; a lógica interna do motor e variáveis de controle não são diretamente acessadas.</p>
+          <p><em>Resenha:</em> Mostre que encapsulamento reduz dependências externas e permite alterar implementação interna sem quebrar quem usa a classe — importante para manutenção e segurança do estado. Use exemplo: mudar como a velocidade é calculada não afeta quem chama `acelerar()`.</p>
+
+          <hr/>
+
+          <p><strong>P2:</strong> O que é polimorfismo? Demonstre com um exemplo rápido (barco a motor e veleiro).</p>
+          <p><strong>Resposta:</strong> Polimorfismo é a capacidade de diferentes classes responderem ao mesmo método de maneiras distintas. Ex.: `BarcoAMotor.navegar()` acelera e usa motor; `Veleiro.navegar()` ajusta velas e depende de vento. Ambos implementam `navegar()` mas internamente fazem coisas diferentes.</p>
+          <p><em>Resenha:</em> Polimorfismo permite escrever código genérico (por exemplo, `for (Barco b : frota) b.navegar();`) sem conhecer detalhes de cada tipo — essencial para extensibilidade.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Aula 4 -->
+    <section id="aula4" class="card">
+      <div class="inner">
+        <h2>Aula 4 — Abstração Final e Aplicações (Ponte / Frameworks)</h2>
+        <p class="small">Revisão (15'), Apresentação (30'), Atividade Final (45'), Encerramento (15')</p>
+
+        <div style="margin-top:12px">
+          <p><strong>Conceito:</strong> A ponte representa uma solução consolidada: o usuário atravessa sem interagir com água, barco ou motor — análogo ao uso de frameworks e bibliotecas que encapsulam complexidade e oferecem API pronta.</p>
+
+          <div class="code-caption" style="margin-top:8px">Exemplo mínimo OO — Assinatura pública/uso de uma API hipotética</div>
+          <div class="code-box">
+# Pseudocódigo de alto nível (usando "ponte")
+func atravessar_com_api():
+  resultado = ApiTravessia.solicitar_travessia(origem, destino, opcoes)
+  if resultado.status == "confirmado":
+    exibir "Travessia marcada - embarque"
+  else:
+    exibir "Consulte alternativa"
+          </div>
+
+          <p style="margin-top:12px"><strong>Comentário:</strong> O professor pode mostrar bibliotecas reais (ex.: frameworks web ou bibliotecas de simulação) para destacar como a "ponte" acelera desenvolvimento.</p>
+        </div>
+
+        <hr/>
+
+        <div class="qblock">
+          <h4>Perguntas (2) — Aula 4</h4>
+
+          <p><strong>P1:</strong> Quais os riscos ao confiar cegamente em um framework/ponte?</p>
+          <p><strong>Resposta:</strong> Perda de controle fino, dificuldades para debugar problemas internos, dependência de atualização/segurança do framework, e possível inaptidão para casos muito específicos ou performáticos.</p>
+          <p><em>Resenha:</em> Ensine a avaliar trade-offs: produtividade vs controle. Mostrar um caso em que um framework resolve 90% do problema mas falha no 10% que exige customização e discuta estratégias (plugins, contribution, fallback manual).</p>
+
+          <hr/>
+
+          <p><strong>P2:</strong> Quando é adequado construir sua própria solução em vez de usar um framework?</p>
+          <p><strong>Resposta:</strong> Quando requisitos não são atendidos por frameworks existentes, requisitos de performance extremos, ou restrições de segurança/compatibilidade que demandam controle total.</p>
+          <p><em>Resenha:</em> Normalmente iniciar com um framework e só construir do zero quando justificável (custo/benefício). Forneça critérios de decisão simples para os alunos aplicarem.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Glossário -->
+    <section id="glossario" class="card">
+      <div class="inner">
+        <h2>Glossário — Palavras-chave</h2>
+        <dl class="glossary">
+          <dt>Abstração</dt>
+          <dd>Representação simplificada de um objeto ou conceito, expondo apenas os aspectos essenciais para um contexto.</dd>
+
+          <dt>Encapsulamento</dt>
+          <dd>Ocultação de detalhes internos de um objeto, expondo apenas uma interface pública (métodos/propriedades controladas).</dd>
+
+          <dt>Herança</dt>
+          <dd>Mecanismo para criar novas classes a partir de classes existentes, reaproveitando e estendendo comportamento.</dd>
+
+          <dt>Polimorfismo</dt>
+          <dd>Capacidade de objetos de várias classes responderem à mesma interface/método com implementações diferentes.</dd>
+
+          <dt>Classe / Objeto</dt>
+          <dd>Classe: molde ou projeto; Objeto: instância concreta que possui estado e comportamento.</dd>
+
+          <dt>Framework / Biblioteca</dt>
+          <dd>Conjunto reutilizável de código que oferece soluções prontas, reduzindo necessidade de implementar do zero.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Modelo real aplicado e comentado -->
+    <section id="modelo" class="card">
+      <div class="inner">
+        <h2>Modelo Real Aplicado — Simulação OO em JavaScript (comentada)</h2>
+        <p>Este modelo é executável no navegador. Implementa classes simples para <code>Rio</code> e <code>BarcoAMotor</code>, simula ação <code>atravessar()</code> e mostra logs.</p>
+
+        <div style="margin-top:10px" class="row">
+          <div>
+            <div class="code-caption">Código (JavaScript) — copie e cole no console ou salve como arquivo .html para executar</div>
+            <div class="code-box" id="jsCode">
+/* Simulação simples - JavaScript ES6 */
+class BarcoAMotor {
+  constructor(nome, vmax){
+    this.nome = nome;
+    this.velocidade = 0;
+    this.vmax = vmax;
+    this.motorLigado = false;
+  }
+  ligarMotor(){
+    this.motorLigado = true;
+    console.log(`${this.nome}: motor ligado`);
+  }
+  acelerar(incremento){
+    if(!this.motorLigado) {
+      console.log(`${this.nome}: ligue o motor primeiro`);
+      return;
+    }
+    this.velocidade = Math.min(this.vmax, this.velocidade + incremento);
+    console.log(`${this.nome}: velocidade = ${this.velocidade}`);
+  }
+  parar(){
+    this.velocidade = 0;
+    this.motorLigado = false;
+    console.log(`${this.nome}: parado`);
+  }
+}
+
+class Rio {
+  constructor(largura, correnteza){
+    this.largura = largura; // metros
+    this.correnteza = correnteza; // 0..1
+  }
+  atravessar(barco){
+    console.log(`Iniciando travessia com ${barco.nome}`);
+    if(barco.motorLigado === false) {
+      console.log("Motor não ligado — tentando ligar automaticamente...");
+      barco.ligarMotor();
+    }
+    // Simples lógica de progresso
+    let progresso = 0;
+    const passo = Math.max(0.5, (barco.velocidade / 10) * (1 - this.correnteza));
+    while(progresso < this.largura){
+      progresso += passo;
+      console.log(`${barco.nome}: progresso = ${progresso.toFixed(1)} / ${this.largura}`);
+      // condição de segurança (simulação)
+      if(this.correnteza > 0.8) {
+        console.log("Correnteza muito forte — suspender travessia");
+        barco.parar();
+        return {status:"falha", motivo:"correnteza"};
+      }
+      // para evitar loop infinito em simulação didática:
+      if(passo <= 0) { console.log("Sem progresso"); break; }
+      // pequeno delay não real aqui — em ambiente real usar async/timers
+      break; // interrompemos para não travar execução síncrona no exemplo
+    }
+    console.log("Tragessia finalizada (simulada)");
+    return {status:"ok"};
+  }
+}
+
+/* Exemplo de uso: */
+const meuBarco = new BarcoAMotor("Rápido", 80);
+meuBarco.ligarMotor();
+meuBarco.acelerar(20);
+const rioPequeno = new Rio(100, 0.2);
+rioPequeno.atravessar(meuBarco);
+            </div>
+          </div>
+
+          <div>
+            <div class="code-caption">Execução (console) — instruções e resultado esperado</div>
+            <div class="code-box" id="resultBox">
+// Instruções:
+// 1) Abra o console do navegador (F12 -> Console).
+// 2) Copie todo o código da coluna esquerda e cole no console.
+// 3) Observe os logs: "Rápido: motor ligado", "Rápido: velocidade = 20", "Rápido: progresso = ...", etc.
+//
+// Resultado esperado (exemplo):
+// Rápido: motor ligado
+// Rápido: velocidade = 20
+// Iniciando travessia com Rápido
+// Rápido: progresso = 10.0 / 100
+// Traggessia finalizada (simulada)
+            </div>
+
+            <div class="example-run" style="margin-top:12px">
+              <button onclick="runExample()">Executar Exemplo Aqui</button>
+              <pre id="liveOutput">Clique em "Executar Exemplo Aqui" para ver logs aqui.</pre>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        // Função para executar o código de exemplo e capturar saída no elemento liveOutput
+        function runExample(){
+          const out = document.getElementById('liveOutput');
+          out.textContent = ''; // limpa
+
+          // Função auxiliar para "logar" no elemento
+          function log(msg){
+            out.textContent += msg + '\n';
+          }
+
+          // Implementação local (mesma lógica do bloco)
+          class BarcoAMotor {
+            constructor(nome, vmax){
+              this.nome = nome;
+              this.velocidade = 0;
+              this.vmax = vmax;
+              this.motorLigado = false;
+            }
+            ligarMotor(){ this.motorLigado = true; log(`${this.nome}: motor ligado`); }
+            acelerar(incremento){
+              if(!this.motorLigado){ log(`${this.nome}: ligue o motor primeiro`); return; }
+              this.velocidade = Math.min(this.vmax, this.velocidade + incremento);
+              log(`${this.nome}: velocidade = ${this.velocidade}`);
+            }
+            parar(){ this.velocidade = 0; this.motorLigado = false; log(`${this.nome}: parado`); }
+          }
+
+          class Rio {
+            constructor(largura, correnteza){ this.largura = largura; this.correnteza = correnteza; }
+            atravessar(barco){
+              log(`Iniciando travessia com ${barco.nome}`);
+              if(!barco.motorLigado){ log("Motor não ligado — tentando ligar automaticamente..."); barco.ligarMotor(); }
+              let progresso = 0;
+              const passo = Math.max(0.5, (barco.velocidade / 10) * (1 - this.correnteza));
+              // simulamos apenas um passo para não travar
+              progresso += passo;
+              log(`${barco.nome}: progresso = ${progresso.toFixed(1)} / ${this.largura}`);
+              if(this.correnteza > 0.8){ log("Correnteza muito forte — suspender travessia"); barco.parar(); return {status:"falha", motivo:"correnteza"}; }
+              log("Travessia finalizada (simulada)");
+              return {status:"ok"};
+            }
+          }
+
+          // uso
+          const meuBarco = new BarcoAMotor("Rápido", 80);
+          meuBarco.ligarMotor();
+          meuBarco.acelerar(20);
+          const rioPequeno = new Rio(100, 0.2);
+          rioPequeno.atravessar(meuBarco);
+        }
+        </script>
+
+        <p class="small" style="margin-top:12px"><strong>Comentários pedagógicos:</strong> Este modelo mostra como classes agrupam estado e comportamento; a simulação é propositalmente simplificada para focar conceitos (construtor, métodos, encapsulamento). O botão executa uma simulação curta sem travar a UI.</p>
+
+      </div>
+    </section>
+
+    <footer class="footer small">
+              <p><a href="index.html" style="text-decoration:none; color:var(--azul)"><strong>↑ Página Inicial</strong></a></p>
+      <p><a href="planoDeEnsinoTema.html" style="text-decoration:none; color:var(--azul)"><strong>↑ Plano de Ensino</strong></a></p>
+
+      © Documento Didático • Plano de Ensino — POO pela Abstração • Luiz Oryone Moraes Lira ©️ 2025.
+    </footer>
+
+  </div>
+</body>
+</html>
