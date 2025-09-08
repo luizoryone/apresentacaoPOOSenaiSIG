@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plano de Ensino – POO pela Abstração (Atravessar um Rio)</title>
+<style>
+  :root{
+    --azul-escuro:#0d47a1;
+    --azul:#1565c0;
+    --azul-claro:#42a5f5;
+    --laranja:#ef6c00;
+    --bg:#f7f9fc;
+    --paper:#ffffff;
+    --ink:#1a1f36;
+    --muted:#5f6b86;
+    --radius:16px;
+    --shadow:0 8px 20px rgba(10,24,55,.08);
+  }
+
+  /* Base */
+  html, body{margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:Inter, "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; line-height:1.65;}
+  .wrap{max-width:1200px; margin:32px auto; padding:0 20px;}
+  h1,h2,h3,h4{margin:0 0 .6rem}
+  h1{font-size:clamp(1.8rem, 2.6vw, 2.4rem); color:var(--azul-escuro); letter-spacing:.2px}
+  h2{font-size:clamp(1.3rem, 1.8vw, 1.6rem); color:var(--azul); }
+  h3{font-size:1.1rem; color:var(--laranja);}
+  p,li{font-size:1.02rem}
+  .muted{color:var(--muted);}
+
+  /* Cabeçalho elegante */
+  .hero{
+    position:relative; padding:28px 24px;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg, rgba(21,101,192,.12), rgba(239,108,0,.10));
+    overflow:hidden; box-shadow:var(--shadow);
+  }
+  .hero::after{
+    content:""; position:absolute; inset:-60px -60px auto auto; width:260px; height:260px;
+    background:radial-gradient(circle at center, rgba(66,165,245,.35), transparent 60%);
+    filter:blur(8px); transform:rotate(25deg);
+  }
+  .subtitle{margin-top:.25rem; font-weight:500; color:var(--muted)}
+
+  /* Card com borda degradê “quadro” */
+  .card{
+    position:relative; border-radius:var(--radius); padding:22px; margin:22px 0; background:var(--paper); box-shadow:var(--shadow); overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; inset:0; padding:2px; border-radius:var(--radius);
+    background:linear-gradient(135deg, var(--azul), var(--azul-claro), var(--laranja));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
+  }
+  .tone-azul{background:linear-gradient(0deg, rgba(21,101,192,.06), rgba(21,101,192,.06)), var(--paper);}
+  .tone-laranja{background:linear-gradient(0deg, rgba(239,108,0,.06), rgba(239,108,0,.06)), var(--paper);}
+
+  /* Sumário */
+  .toc{display:grid; gap:8px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:10px}
+  .toc a{
+    display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px; text-decoration:none; color:var(--azul-escuro);
+    background:#fff; box-shadow:0 2px 10px rgba(10,24,55,.06); transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .toc a:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(10,24,55,.10)}
+  .badge{font-size:.8rem; background:linear-gradient(135deg, var(--azul), var(--azul-claro)); color:#fff; padding:.2rem .55rem; border-radius:999px}
+
+  /* Listas e blocos */
+  ul{margin:0 0 0 1.2rem}
+  .cols{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .hint{padding:.75rem 1rem; border-radius:12px; background:rgba(13,71,161,.06); border:1px dashed rgba(13,71,161,.25);}
+
+  /* Tabela comparativa */
+  table{width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:14px; background:var(--paper); box-shadow:var(--shadow); font-size:.98rem}
+  thead th{background:linear-gradient(135deg, rgba(21,101,192,.12), rgba(239,108,0,.10)); color:var(--azul-escuro); text-align:left; padding:14px 16px}
+  tbody td{padding:14px 16px; border-top:1px solid rgba(10,24,55,.06); vertical-align:top}
+  tbody tr:nth-child(odd){background:rgba(10,24,55,.02)}
+  .tag{display:inline-block; padding:.1rem .5rem; border-radius:999px; background:rgba(239,108,0,.12); color:var(--laranja); font-size:.8rem; font-weight:600}
+
+  /* Âncoras suaves */
+  html{scroll-behavior:smooth;}
+  .section{scroll-margin-top:80px;}
+
+  /* Impressão */
+  @media print{
+    .hero, .toc a{box-shadow:none}
+    body{background:#fff}
+    .card::before{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Cabeçalho -->
+    <section class="hero card tone-azul" id="topo">
+      <h1 style="text-align: center;">Plano de Ensino</h1>
+      <h1 style="text-align: center; background-color:var(--azul-claro); ">Luiz Oryone Moraes Lira</h1>
+      <h1 style="text-align: center;">Programação Orientada a Objetos pela Abstração</h1>
+      <p class="subtitle">Analogia didática: <strong>“Atravessar um Rio”</strong> • Pilares da POO com foco em <em>abstração</em></p>
+      <div class="hint" style="margin-top:12px">
+        Este documento integra <strong>Modelo Pedagógico</strong>, <strong>Plano de Ensino</strong>, <strong>Estrutura das Aulas</strong> e um <strong>Quadro-Resumo</strong> comparativo.
+      </div>
+    </section>
+
+    <!-- Sumário -->
+    <section class="card tone-laranja">
+      <h2>Sumário</h2>
+      <div class="toc">
+        <a href="#modelo"><span class="badge">01</span> Modelo Pedagógico e Plano de Ensino</a>
+        <a href="#conceitos"><span class="badge">02</span> Abstração: Atravessando um Rio</a>
+        <a href="#poo"><span class="badge">03</span> Conceitos da POO</a>
+        <a href="#aulas"><span class="badge">04</span> Estrutura das Aulas</a>
+        <a href="#quadro-resumo"><span class="badge">05</span> Quadro-Resumo Comparativo</a>
+      </div>
+    </section>
+
+    <!-- Modelo Pedagógico e Plano -->
+    <section class="card tone-laranja section" id="modelo">
+      <h2>Modelo Pedagógico e Plano de Ensino</h2>
+
+      <h3>Modelo Pedagógico Sugerido</h3>
+      <p><strong>ABP</strong> (Aprendizagem Baseada em Problemas) e <strong>Construtivismo</strong>.</p>
+      <p><strong>Justificativa:</strong> A ABP coloca o aluno no centro do processo, utilizando um problema real (atravessar o rio) como ponto de partida para a aprendizagem. O construtivismo entende que o conhecimento é construído ativamente pelo aluno por meio de exploração e experimentação, alinhando-se à prática de POO.</p>
+
+      <h3>Plano de Ensino: Introdução à Programação Orientada a Objetos com Abstração</h3>
+      <div class="cols">
+        <div>
+          <p><strong>Tema:</strong> Programação Orientada a Objetos (POO)<br>
+             <strong>Objeto de Estudo:</strong> Abstração e os Pilares da POO<br>
+             <strong>Público-alvo:</strong> Iniciantes em programação<br>
+             <strong>Duração:</strong> 4 aulas de 1h30min (adaptável)</p>
+        </div>
+        <div>
+          <p><strong>Objetivos Gerais</strong></p>
+          <ul>
+            <li>Compreender o conceito de <strong>abstração</strong>.</li>
+            <li>Introduzir os princípios centrais da <strong>POO</strong>.</li>
+            <li>Relacionar POO com <strong>situações reais</strong>.</li>
+            <li>Construir base sólida para linguagens OO.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Objetivos Específicos</h3>
+      <ul>
+        <li>Identificar diferentes “ferramentas” (abstrações) para atravessar um rio.</li>
+        <li>Distinguir linguagens de baixo nível (Assembly) e alto nível (POO) via analogia.</li>
+        <li>Compreender <strong>classes</strong> e <strong>objetos</strong> e suas relações.</li>
+        <li>Explicar <strong>encapsulamento</strong>, <strong>herança</strong> e <strong>polimorfismo</strong> com exemplos práticos.</li>
+        <li>Reconhecer o papel da abstração na <strong>redução da complexidade</strong>.</li>
+      </ul>
+    </section>
+
+    <!-- Abstração -->
+    <section class="card tone-azul section" id="conceitos">
+      <h2>Abstração: Atravessando um Rio</h2>
+      <p>A <strong>abstração</strong> foca nos aspectos essenciais e ignora detalhes irrelevantes. Em programação, é modelar entidades de forma simplificada, expondo apenas o necessário.</p>
+
+      <h3>Objetivo</h3>
+      <p>Atravessar o rio.</p>
+
+      <h3>Métodos (Abstrações)</h3>
+      <ul>
+        <li><strong>Nadando</strong> <span class="tag">Assembly</span> — esforço direto, alto controle e alta complexidade.</li>
+        <li><strong>Canoa de Madeira</strong> <span class="tag">BASIC</span> — primeiro nível de estrutura, sequência de comandos.</li>
+        <li><strong>Balsa Estruturada</strong> <span class="tag">Programação Estruturada</span> — funções e blocos organizados.</li>
+        <li><strong>Barco a Motor</strong> <span class="tag">POO</span> — objetos com propriedades e métodos; encapsulamento, herança e polimorfismo.</li>
+        <li><strong>Ponte</strong> <span class="tag">Frameworks/APIs</span> — abstração máxima: uso direto da solução, complexidade oculta.</li>
+      </ul>
+    </section>
+
+    <!-- Conceitos POO -->
+    <section class="card tone-laranja section" id="poo">
+      <h2>Conceitos da POO</h2>
+      <ul>
+        <li><strong>Classe:</strong> Projeto/molde de objetos.</li>
+        <li><strong>Objeto:</strong> Instância concreta da classe.</li>
+        <li><strong>Encapsulamento:</strong> Dados + métodos e controle de acesso.</li>
+        <li><strong>Abstração:</strong> Expor apenas o essencial do objeto.</li>
+        <li><strong>Herança:</strong> Reutilização e especialização de comportamentos.</li>
+        <li><strong>Polimorfismo:</strong> Mesma mensagem, diferentes implementações.</li>
+      </ul>
+    </section>
+
+    <!-- Estrutura das Aulas -->
+    <section class="card tone-azul section" id="aulas">
+      <h2>Estrutura das Aulas</h2>
+
+      <div class="card tone-azul">
+        <h3>Aula 1 — O Problema e as Primeiras Abstrações (Nadando e Canoa/BASIC)</h3>
+        <ul>
+          <li><strong>Introdução (15 min):</strong> Problema “Atravessar um rio”.</li>
+          <li><strong>Exploração Guiada (45 min):</strong> Nadar (Assembly) × Canoa (BASIC) e discussão de prós/contras.</li>
+          <li><strong>Atividade (30 min):</strong> Pseudocódigo para ambas as abordagens focando na sequência.</li>
+          <li><strong>Encerramento (15 min):</strong> Conexão com a evolução das linguagens.</li>
+        </ul>
+      </div>
+
+      <div class="card tone-laranja">
+        <h3>Aula 2 — Estrutura e Organização (Balsa/Programação Estruturada)</h3>
+        <ul>
+          <li><strong>Revisão (10 min):</strong> Nadar vs. Canoa.</li>
+          <li><strong>Apresentação (30 min):</strong> Funções/procedimentos como “estações de trabalho”. Ex.: <code>verificar_vento()</code>, <code>remar()</code>, <code>chegar_margem()</code>.</li>
+          <li><strong>Atividade (40 min):</strong> Dividir em funções maiores. Ex.: <code>funcao_navegar()</code>, <code>funcao_ancorar()</code>.</li>
+          <li><strong>Introdução à Abstração (10 min):</strong> Pensar no essencial (“navegar”) e não em cada remada.</li>
+          <li><strong>Encerramento (10 min):</strong> Preparação para modelos mais flexíveis.</li>
+        </ul>
+      </div>
+
+      <div class="card tone-azul">
+        <h3>Aula 3 — O Poder dos Objetos (Barco a Motor/POO)</h3>
+        <ul>
+          <li><strong>Revisão (15 min):</strong> Síntese do caminho até aqui.</li>
+          <li><strong>Apresentação (45 min):</strong> Classe, Objeto, Propriedades (cor, modelo, velocidade), Métodos (ligar, acelerar, virar), Encapsulamento.</li>
+          <li><strong>Atividade Prática:</strong> Definir <code>class BarcoAMotor</code>; instanciar <code>meuBarco</code>; acionar <code>meuBarco.acelerar()</code>.</li>
+          <li><strong>Herança &amp; Polimorfismo (20 min):</strong> Iate &lt; BarcoAMotor; “navegar()” em tipos diferentes.</li>
+          <li><strong>Encerramento (10 min):</strong> POO para gerenciar complexidade.</li>
+        </ul>
+      </div>
+
+      <div class="card tone-laranja">
+        <h3>Aula 4 — Abstração Final e Aplicações (Ponte/Frameworks)</h3>
+        <ul>
+          <li><strong>Revisão (15 min):</strong> Pilares: Classe, Objeto, Encapsulamento, Abstração, Herança, Polimorfismo.</li>
+          <li><strong>Apresentação (30 min):</strong> Ponte como solução consolidada; bibliotecas/frameworks ocultando complexidade.</li>
+          <li><strong>Atividade Final (45 min):</strong>
+            <ul>
+              <li><em>Opção 1 (Teórica):</em> Mapear outros problemas cotidianos com múltiplas abstrações.</li>
+              <li><em>Opção 2 (Prática):</em> Exemplo OO simples (Java/Python/C#) com <code>Rio.atravessar()</code>.</li>
+            </ul>
+          </li>
+          <li><strong>Encerramento (15 min):</strong> Síntese e próximos passos em linguagens OO.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Quadro-Resumo Comparativo -->
+    <section class="card tone-laranja section" id="quadro-resumo">
+      <h2>Quadro-Resumo Comparativo — Abordagens para “Atravessar o Rio”</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Abordagem</th>
+            <th>Analogia em Programação</th>
+            <th>Características</th>
+            <th>Vantagens</th>
+            <th>Limitações</th>
+            <th>Quando usar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nadando</strong></td>
+            <td><span class="tag">Assembly</span></td>
+            <td>Baixa abstração; controle total do “hardware”.</td>
+            <td>Máximo desempenho e controle fino.</td>
+            <td>Altíssima complexidade; baixa produtividade.</td>
+            <td>Otimizações críticas e baixo nível.</td>
+          </tr>
+          <tr>
+            <td><strong>Canoa</strong></td>
+            <td><span class="tag">BASIC / Procedural simples</span></td>
+            <td>Sequência direta de comandos.</td>
+            <td>Curva de aprendizado reduzida.</td>
+            <td>Escalabilidade limitada; pouca modularização.</td>
+            <td>Scripts pequenos e tarefas lineares.</td>
+          </tr>
+          <tr>
+            <td><strong>Balsa</strong></td>
+            <td><span class="tag">Programação Estruturada</span></td>
+            <td>Funções, blocos, fluxo controlado.</td>
+            <td>Melhor organização e manutenção.</td>
+            <td>Complexidade cresce com o tamanho do sistema.</td>
+            <td>Projetos médios com foco em clareza.</td>
+          </tr>
+          <tr>
+            <td><strong>Barco a Motor</strong></td>
+            <td><span class="tag">POO</span></td>
+            <td>Objetos, encapsulamento, herança, polimorfismo.</td>
+            <td>Reuso, extensibilidade e manutenção superiores.</td>
+            <td>Overhead conceitual; projeto exige disciplina.</td>
+            <td>Aplicações escaláveis e domínios ricos.</td>
+          </tr>
+          <tr>
+            <td><strong>Ponte</strong></td>
+            <td><span class="tag">Frameworks / APIs</span></td>
+            <td>Abstração máxima; solução consolidada.</td>
+            <td>Alta produtividade; foco no problema.</td>
+            <td>Menor controle de detalhes internos.</td>
+            <td>Produtos com prazos curtos e padrões sólidos.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Rodapé simples -->
+    <section class="card tone-azul" style="text-align:center">
+      <p class="muted">© Plano de Ensino – POO pela Abstração • Luiz Oryone 2025 • Gerado para uso didático.</p>
+      <p><a href="#topo" style="text-decoration:none; color:var(--azul)"><strong>↑ Voltar ao topo</strong></a></p>
+      <p><a href="index.html" style="text-decoration:none; color:var(--azul)"><strong>↑ Página Inicial</strong></a></p>
+
+    </section>
+  </div>
+</body>
+</html>
+

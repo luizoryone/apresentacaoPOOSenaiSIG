@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Plano de Ensino - POO</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #0d47a1;
+      border-bottom: 3px solid #1565c0;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #1565c0;
+      border-left: 6px solid #1565c0;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      color: #ef6c00;
+      border-left: 4px solid #ef6c00;
+      padding-left: 8px;
+    }
+
+    .quadro {
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    /* Borda degradê */
+    .quadro::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      border-radius: 12px;
+      padding: 2px;
+      background: linear-gradient(135deg, #1565c0, #42a5f5, #ef6c00);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, 
+                     linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+              mask-composite: exclude;
+    }
+
+    /* Dois tons diferentes de quadros */
+    .azul {
+      background: #e3f2fd;
+    }
+
+    .laranja {
+      background: #fff3e0;
+    }
+
+    p, li {
+      margin: 10px 0;
+    }
+
+    ul {
+      margin-left: 25px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Plano de Ensino - Programação Orientada a Objetos</h1>
+
+  <div class="quadro azul">
+    <h2>Abstração: Atravessando um Rio</h2>
+    <p>A <strong>abstração</strong> é a capacidade de focar nos aspectos essenciais de algo, ignorando detalhes irrelevantes. 
+    No mundo da programação, isso significa simplificar entidades reais em representações úteis.</p>
+
+    <h3>Objetivo</h3>
+    <p>Atravessar o rio.</p>
+
+    <h3>Métodos (Abstrações)</h3>
+    <ul>
+      <li><strong>Nadando:</strong> Analogia com Assembly — esforço direto e detalhado.</li>
+      <li><strong>Canoa de Madeira:</strong> Analogia com BASIC — mais organizado, mas ainda simples.</li>
+      <li><strong>Balsa Estruturada:</strong> Analogia com programação estruturada — funções organizadas.</li>
+      <li><strong>Barco a Motor:</strong> Analogia com POO — objetos, encapsulamento, herança e polimorfismo.</li>
+      <li><strong>Ponte:</strong> Abstração máxima — comparável a frameworks e bibliotecas.</li>
+    </ul>
+  </div>
+
+  <div class="quadro laranja">
+    <h2>Conceitos da POO</h2>
+    <ul>
+      <li><strong>Classe:</strong> Projeto ou molde de objetos.</li>
+      <li><strong>Objeto:</strong> Instância concreta da classe.</li>
+      <li><strong>Encapsulamento:</strong> Proteger dados e expor apenas interfaces necessárias.</li>
+      <li><strong>Abstração:</strong> Foco nos aspectos essenciais do objeto.</li>
+      <li><strong>Herança:</strong> Reaproveitamento de código em novas classes.</li>
+      <li><strong>Polimorfismo:</strong> Mesma ação com diferentes implementações.</li>
+    </ul>
+  </div>
+
+  <div class="quadro azul">
+    <h2>Modelo Pedagógico e Plano de Ensino</h2>
+    <p><strong>Modelo:</strong> Aprendizagem Baseada em Problemas (ABP) e Construtivismo.</p>
+    <p><strong>Tema:</strong> Programação Orientada a Objetos (POO)</p>
+    <p><strong>Objetos de Estudo:</strong> Abstração e pilares da POO</p>
+    <p><strong>Público-alvo:</strong> Iniciantes em programação.</p>
+  </div>
+
+  <div class="quadro laranja">
+    <h2>Estrutura das Aulas</h2>
+    <ul>
+      <li><strong>Aula 1:</strong> Problema e primeiras abstrações (Nadar e Canoa).</li>
+      <li><strong>Aula 2:</strong> Estrutura e organização (Balsa).</li>
+      <li><strong>Aula 3:</strong> O poder dos objetos (Barco a Motor).</li>
+      <li><strong>Aula 4:</strong> Abstração final (Ponte e frameworks).</li>
+    </ul>
+  </div>
+
+</body>
+</html>
